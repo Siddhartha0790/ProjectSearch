@@ -1,0 +1,75 @@
+{% extends 'project/base.html' %} {% block content %}
+<section class="hero-section text-center">
+  {% load static %}
+  <div class="container container--narrow">
+      <div class="hero-section__box">
+          <h2> Search for projects</h2>
+          <h2></h2>
+      </div>
+
+      <div class="hero-section__search">
+
+          <form id="searchForm" class="form" action="" method="get">
+              <div class="form__field">
+                  <label for="formInput#search">Search Developers </label>
+                  <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                      value="{{search_query}}" placeholder="Search by project name or description" />
+              </div>
+
+              <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+          </form>
+
+      </div>
+  </div>
+</section>
+<div class="container text-center">
+  <div class="devInfo">
+    <h3 class="devInfo__title">Projects</h3>
+    <div class="grid grid--three">
+      {% for project in projects %}
+      <div class="column">
+        <div class="card project">
+          <a class="project">
+            <img
+              class="project__thumbnail"
+              src="{{project.image.url}}"
+              alt=""
+            />
+            <div class="card__body">
+              <h3 class="project__title">{{project.name}}</h3>
+              <p>
+                <a
+                  class="project__author"
+                  href="/profiles/profile/{{project.owner.id}}"
+                  >By {{project.owner.name}}</a
+                >
+              </p>
+              <p class="project--rating">
+                <span style="font-weight: bold"
+                  >{{project.voteratio}}% vote ratio</span
+                >
+                <br />Created At- {{project.created}}
+              </p>
+              <div class="project__tags">
+                {% for tag in project.tag.all %}
+                <span class="tag tag--pill tag--main">
+                  <small>{{tag}}</small>
+                </span>
+                {% endfor%}
+                <br />
+                <a href="/project/{{project.id}}/">View Details</a>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{% include 'project/pagination.html' with search_query=projects  custom_range=custom_range%}
+
+{% endblock %}

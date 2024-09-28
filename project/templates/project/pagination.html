@@ -1,0 +1,21 @@
+<div class="pagination">
+    <ul class ='container '>
+      {% if search_query.has_previous %}
+        <a class= 'btn  ' href='?page={{search_query.previous_page_number}}'> Prev</a>
+  
+      {% endif %}
+      {% for page in custom_range %}
+       
+        {% if page == search_query.number %}
+        <a class= 'btn btn--sub ' href='?page={{page}}'>{{page}}</a>
+        {% else%}
+        <a class= 'btn ' href='?page={{page}}'>{{page}}</a>
+        {% endif %}
+      {% endfor %}
+      {% if search_query.has_next %}
+        <a class= 'btn  ' href='?page={{search_query.next_page_number}}'>Next</a>
+  
+      {% endif %}
+    </ul>
+  </div>
+  

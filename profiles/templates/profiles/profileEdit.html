@@ -1,0 +1,25 @@
+{%extends 'project/base.html'%}
+
+{% block content %}
+   <form method = 'POST' action='' enctype='multipart/form-data' class='form settings'>
+     {% csrf_token %}
+    
+       <div class="form__field ">
+        {% for field in form %}
+        {{field.label}}
+        <label for="formInput#text" class='input'>{{field}} </label>
+        <input
+          class="input input--text"
+          id="formInput#text"
+          type="text"
+          name="text"
+        
+        />
+        {% endfor %}
+      </div>
+      <input type='submit' >
+
+   </form>
+
+
+{% endblock %}
