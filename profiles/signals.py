@@ -20,14 +20,9 @@ def createprofile(sender, created,instance,**kwargs):
         name = user.first_name ,  
         email= user.email      
         )
-        print('created new user')
-        send_mail(
-        "Thanks for joining devsearch",
-        "dive into the world of crazy projects.",
-        settings.EMAIL_HOST_USER,
-        [user.profile.email],
-        fail_silently=False,
-)
+        
+       
+
           
 def deleteprofile(sender, instance , **kwargs):
     user = instance.user

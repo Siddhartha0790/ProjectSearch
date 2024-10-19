@@ -81,7 +81,7 @@ def projectUpdate(request,pk):
     if request.method == 'POST':
         form = ProjectForm(request.POST,request.FILES, instance=project)
         form.save()
-        return redirect('projects')
+        return redirect('account')
     return render(request , 'project/project_create.html', {'form':form})
 
 
@@ -91,7 +91,7 @@ def projectDelete(request,pk):
     if request.method == 'POST':
         project = Project.objects.get(id=pk)
         project.delete()
-        return redirect('projects')
+        return redirect('account')
     return render(request,'project/project_delete.html', {'project': project})
     
     
